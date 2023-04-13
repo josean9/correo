@@ -31,23 +31,38 @@ El método input(’->’) le permite recopilar una cadena de caracteres escrita
 (la consola, en este caso)."""
 
 import re
+
 class Correo():
     def __init__(self,correo):
-        self.correo=correo
-    def correoCorrecto(self, correoIntroducido):
-        if correoIntroducido == self.correo:
-            return True
-        else:
-            return False
-    def validar(self):
-        if re.search(".+@.+\..+",self.correo):
-            correoIntroducido = input("->")
-            if correoCorrecto(self, correoIntroducido) == True:
-                return True
-            else: 
-                return raise
-            
-            return True
+        self.correo = correo
+    def validar(self):   
+                                         
         
+        validacion = re.search(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", self.correo)
+        print(validacion,"t")
+        correoIntroducido = input("-> ")
+        if validacion:
+            if correoIntroducido == self.correo:
+                nombre = ""
+                for i in self.correo:
+                    if i != "@":
+                        nombre += i 
+                    else:
+                        break
+                nombre[0] = nombre[0].capitalize
+                return "Bienvenido {}!!".format(nombre)
+            else: 
+                raise Exception("Cuenta bloqueada a causa de un ataque")
         else:
             return False
+
+correo1=Correo("joseantonio@gmail.com")
+correo2 = Correo("alejandro@gmail.com")
+correp = Correo("jacobo@gmail.com")
+correos = [correo1, correo2, correp]
+for i in correos:
+    print(i.validar())
+
+print(correo1.validar())
+print(correo1.validar())
+print(correo1.validar())
