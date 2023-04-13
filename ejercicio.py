@@ -49,7 +49,7 @@ class Correo():
                         nombre += i 
                     else:
                         break
-                nombre[0] = nombre[0].capitalize
+                nombre = nombre.capitalize()
                 return "Bienvenido {}!!".format(nombre)
             else: 
                 raise Exception("Cuenta bloqueada a causa de un ataque")
