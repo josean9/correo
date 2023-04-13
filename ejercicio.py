@@ -32,17 +32,14 @@ El método input(’->’) le permite recopilar una cadena de caracteres escrita
 
 import re
 
-class Correo():
+class Correo(): #clase correo con un solo atributo  correo
     def __init__(self,correo):
         self.correo = correo
-    def validar(self):   
-                                         
-        
-        validacion = re.search(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", self.correo)
-        print(validacion,"t")
-        correoIntroducido = input("-> ")
-        if validacion:
-            if correoIntroducido == self.correo:
+    def validar(self):   #metodo que valida si el correo introducido es correcto o incorrecto
+        validacion = re.search(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", self.correo) #metodo re que busca en el self.correo la arroba
+        correoIntroducido = input("-> ")#pedimos que introduzca un correo
+        if validacion: # si el correo contiene una arroba, continuamos
+            if correoIntroducido == self.correo: #si el correo coincide pues terminamos
                 nombre = ""
                 for i in self.correo:
                     if i != "@":
@@ -51,18 +48,15 @@ class Correo():
                         break
                 nombre = nombre.capitalize()
                 return "Bienvenido {}!!".format(nombre)
-            else: 
+            else: #si no coincide enviamos una excepcion de que la cuenta ha sido bloqueda
                 raise Exception("Cuenta bloqueada a causa de un ataque")
-        else:
-            return False
+        else: #si el correo no contiene una arroba, enciamos "correo incorrecto"
+            return ("Correo Incorrecto")
 
-correo1=Correo("joseantonio@gmail.com")
+correo1=Correo("joseantonio@gmail.com")#creamos los objetod de la clase correo
 correo2 = Correo("alejandro@gmail.com")
-correp = Correo("jacobo@gmail.com")
-correos = [correo1, correo2, correp]
+correo3 = Correo("jacobo@gmail.com")
+correos = [correo1, correo2, correo3]#creamos una lista con los correos
 for i in correos:
-    print(i.validar())
+    print(i.validar())#los validamos
 
-print(correo1.validar())
-print(correo1.validar())
-print(correo1.validar())
